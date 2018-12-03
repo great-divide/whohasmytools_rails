@@ -1,0 +1,26 @@
+<h1>Welcome, <%= @user.username%>!</h1>
+
+<!-- CONTRACTS SECTION -->
+<h2><!-- <a href="/users/contracts"> -->My Contracts<!-- </a> --></h2>
+
+	<h3>Active Loans</h3>
+	<!-- make HTML list -->
+		<% if @user.active_loans.empty? %>
+			<p>You are not loaning any tools right now.</p>
+		<% else%>
+			<% @user.active_loans.each.with_index(1) do |c, index| %>
+				<!-- later on... add a date... due date? -->
+				<p><%= "#{index}. You loaned your #{c.tool.name} to #{c.borrower.username}." %></p>
+			<% end %>
+		<% end %>
+
+
+	<h3>Active Borrows</h3>
+	<!-- make HTML list -->
+		<% if @user.borrower_contracts.empty? %>
+			<p>You are not borrowing any tools right now.</p>
+		<% else %>
+			<% @user.borrower_contracts.each.with_index(1) do |c, index| %>
+				<p><%= "#{index}. You are borrowing a #{c.tool.name} from #{c.loaner.username}" %></p>
+			<% end %>
+		<% end %>
