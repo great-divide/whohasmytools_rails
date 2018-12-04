@@ -1,19 +1,29 @@
-<%= form_for @user, url: {action: "create", controller: "sessions"} do |f| %>
-  <%= f.label :username %>
-  <%= f.text_field :username %> <br>
-  <%= f.label :email %>
-  <%= f.email_field :email %> <br>
-  <%= f.label :password %>
-  <%= f.password_field :password %> <br>
-  <%= f.submit "Sign me up!" %>
-<% end %>
+<%= form_for(:session, url: login_path) do |f| %>
+
+      <%= f.label :username %>
+      <%= f.text_field :username %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.submit "Log in" %>
+    <% end %>
 
 
-<%= form_for @user, url: {action: "create", controller: "sessions"} do |f| %>
-  <%= f.label :username %>
-  <%= f.text_field :username %> <br>
-  <%= f.label :password %>
-  <%= f.password_field :password %> <br>
-  <%= f.submit "Log In",  %>
-<% end %>
+
+
+<%= form_for @user do |f| %>
+
+      <%= f.label :username %>
+      <%= f.text_field :username %>
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.submit "Sign Me Up!" %>
+    <% end %>
 
