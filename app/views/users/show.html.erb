@@ -1,4 +1,4 @@
-<h1>Welcome to your dashboard, <%= @user.username%>!</h1>
+<h1>Welcome to your dashboard, <%= @user.username%>!</h1> <%=  button_to "Logout", logout_path(:id => session[:user_id]), :method => :delete %>
 
 <!-- CONTRACTS SECTION -->
 <h2><%= link_to "My Contracts", user_contracts_path(@user)%></h2>
@@ -35,7 +35,7 @@
 				<p><li><b><%= link_to "#{t.name}:", tool_path(t.id)%></b> <%= " #{t.description}" %></li></p>
 		<% end %>
 	</ol>
-	
+
 <h3>Add some tools to your toolbox so you can loan them out!</h3>
 	<%= form_for @tool do |f| %>
 		<%= f.label :name, "Tool name: " %>
