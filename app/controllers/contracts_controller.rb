@@ -17,7 +17,6 @@ class ContractsController < ApplicationController
 		if logged_in? && User.find_by(username: params["contract"]["borrower"])
 
 			# add error message if and logic if tool not selected (first add blank option to tool select)
-			# also need to control for whether tool is already loaned out, but better place for that is the tool select menu logic
 	
 			@contract = Contract.create
 			@contract.loaner = current_user
