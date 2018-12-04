@@ -11,16 +11,22 @@
 			<% @user.active_loans.each do |c| %>
 				<!-- add DUE DATE -->
 				<ol>
-			<li><%= "You loaned your #{c.tool.name} to #{c.borrower.username} on #{c.created_at.strftime("%A, %B %d")}." %></li>
-			</ol>
+					<li><%= "You loaned your #{c.tool.name} to #{c.borrower.username} on #{c.created_at.strftime("%A, %B %d")}." %></li>
+				</ol>
 		<% end %>
 	<% end %>
 
-	<h3>Active Borrows</h3>
+<h3>Active Borrows</h3>
 	
-1. lkjlk
-2. lkjlk
-3. lkjlk
+	<% if @user.borrower_contracts.empty? %>
+			<p>You are not borrowing any tools right now.</p>
+		<% else %>
+			<% @user.borrower_contracts.each do |c| %>
+				<ol>
+					<li><%= "You've had #{c.loaner.username}'s #{c.tool.name} since #{c.created_at.strftime("%A, %B %d")}." %></li>
+				</ol>
+			<% end %>
+		<% end %>
 
 <!-- TOOL SECTION, float side by side -->
 <h2><%= link_to "My Tools", user_tools_path(@user)%></h2>
