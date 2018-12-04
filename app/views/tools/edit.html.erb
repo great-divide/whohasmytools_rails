@@ -6,4 +6,9 @@
 		<%= f.label :description, "Description (optional): " %>
 		<%= f.text_field :description %> <br>
 		<%= f.submit "Update Tool" %>
+	
+	<% end %>
+
+<%= form_for(@tool, :html => { :method => :delete, :remote => true }) do |f| %>
+	<%= f.submit "Delete Tool" %>
 	<% end %>

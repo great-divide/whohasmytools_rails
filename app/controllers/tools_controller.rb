@@ -56,9 +56,14 @@ class ToolsController < ApplicationController
   def destroy
   	# binding.pry
   	if logged_in?
-	  	@tool = Tool.find_by(id: params[:id])
-	  	@tool.destroy
-	  	redirect_to user_tools_path(current_user)
+  		if !@tool.active
+		  	@tool = Tool.find_by(id: params[:id])
+		  	@tool.destroy
+		  	redirect_to user_tools_path(current_user)
+		  elsif @tool.active
+		  	# error message:  "So and so  is borrowing that tool right now!"
+		  	redirect_to user_tools(current_user)
+		  end
 	  else
 	  	redirect_to '/'
 	  end

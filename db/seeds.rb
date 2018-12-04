@@ -6,10 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-bob = User.create(username: bob, email: bob@gmail.com, password: 123)
-jim = User.create(username: jim, email: jim@gmail.com, password: 123)
+bob = User.create(username: "bob", email: "bob@gmail.com", password: "123")
+jim = User.create(username: "jim", email: "jim@gmail.com", password: "123")
 
-drill = Tool.new(name: drill, description: cordless)
+drill = Tool.new(name: "drill", description: "cordless")
 bob.tools << drill
 bob.save
 

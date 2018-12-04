@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
 	def show
 		if logged_in?
+			binding.pry
 			@user = User.find_by(id: params[:id])
 			@tool = Tool.new
 			@contract = Contract.new
