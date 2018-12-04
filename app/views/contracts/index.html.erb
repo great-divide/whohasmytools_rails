@@ -3,7 +3,7 @@
 <h2>You have <%= @user.active.length %> active loans:</h2>
 	<% @user.active_loans.each do |c| %>
 		<ol>
-			<li><h4><%=c.borrower.username%> has had your <%=c.tool.name%> since <%= c.created_at.strftime("%a %b %d %Y") %></h4>
+			<li><h4><%=c.borrower.username%> has had your <%=c.tool.name%> since <%= c.created_at.strftime("%A, %B %d") %></h4>
 			
 				<%= form_for c do |f|%>
 					<%= f.label "Extend the loan:" %>

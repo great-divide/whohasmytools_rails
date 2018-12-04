@@ -3,7 +3,7 @@ class Tool < ApplicationRecord
 	has_many   :contracts
 
 	def active
-		if self.contracts.any? { |c| c.active == true}
+		if self.contracts.any? { |c| c.active}
 			true
 		else
 			false

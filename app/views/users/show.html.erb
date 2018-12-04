@@ -3,11 +3,18 @@
 <!-- CONTRACTS SECTION -->
 <h2><%= link_to "My Contracts", user_contracts_path(@user)%></h2>
 
-	<h3>Active Loans</h3>
+<h3>Active Loans</h3>
 	
-1. asdfjl
-2. alkjlkj
-3. akjlk
+	<% if @user.active_loans.empty? %>
+			<p>You are not loaning any tools right now.</p>
+		<% else %>
+			<% @user.active_loans.each do |c| %>
+				<!-- add DUE DATE -->
+				<ol>
+			<li><%= "You loaned your #{c.tool.name} to #{c.borrower.username} on #{c.created_at.strftime("%A, %B %d")}." %></li>
+			</ol>
+		<% end %>
+	<% end %>
 
 	<h3>Active Borrows</h3>
 	
