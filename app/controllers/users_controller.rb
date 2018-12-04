@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 		if logged_in?
 			@user = User.find_by(id: params[:id])
 			@tool = Tool.new
+			@contract = Contract.new
 	  else
       redirect_to '/'
     end

@@ -31,3 +31,14 @@
 		<%= f.text_field :description %> <br>
 		<%= f.submit "Add to my Toolbox" %>
 	<% end %>
+
+<!-- Loan or Borrow things, float side by side -->
+<h3>Loan a Tool to a Friend</h3>
+	<%= form_for @contract do |f| %>
+		<%= f.label :borrower %>
+		<%= f.text_field :borrower %>
+		<%= f.label :tool, "Tool: " %>
+		<%= f.collection_select :tool, @user.tools, :name, :name %>
+		
+		<%= f.submit "Loan it out!" %>
+	<% end %>
