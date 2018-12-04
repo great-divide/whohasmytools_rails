@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :users do 
   	resources :tools
+  	resources :contracts
   end
 
   resources :sessions

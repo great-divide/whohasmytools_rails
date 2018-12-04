@@ -1,7 +1,7 @@
 <h1>Welcome to your dashboard, <%= @user.username%>!</h1>
 
 <!-- CONTRACTS SECTION -->
-<h2><a href="/users/contracts">My Contracts</a></h2>
+<h2><%= link_to "My Contracts", user_contracts_path(@user)%></h2>
 
 	<h3>Active Loans</h3>
 	
@@ -16,10 +16,10 @@
 3. lkjlk
 
 <!-- TOOL SECTION, float side by side -->
-<h2><a href="/users/<%= @user.id %>/tools">My Tools</a></h2>
+<h2><%= link_to "My Tools", user_tools_path(@user)%></h2>
 	<% @user.tools.each.with_index(1) do |t, index| %>
 		<p>
-			<b><%= "#{index}." %><a href="/tools/<%="#{t.id}"%>"><%= "#{t.name}" %></a>:</b> <%= t.description %>
+			<b><%= "#{index}." %><%= link_to "#{t.name}: ", tool_path(t.id)%></b> <%= t.description %>
 		</p>
 	<% end %>
 
