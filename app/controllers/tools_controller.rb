@@ -1,5 +1,13 @@
 class ToolsController < ApplicationController
 
+	def index
+		if logged_in?
+			@user = current_user
+		else
+			redirect_to '/'
+		end
+	end
+
 	def new
 		@tool = Tool.new
 	end

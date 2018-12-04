@@ -1,0 +1,37 @@
+<h1><%=@user.username%>'s Contracts</h1>
+
+<h2>You have <%= @user.active.length %> active loans:</h2>
+	<% @user.active_loans.each.with_index(1) do |c, index| %>
+		<ol>
+			<li><%= index %>. <%=c.borrower.username%> has had your <%=c.tool.name%> since <%= c.created_at.strftime("%a %b %d %Y") %>
+				<form action="/contracts/<%= c.id %>/" method="POST">
+					<input type="hidden" name="_method" value="patch">
+					<input type="submit" value="Tool Returned" name="terminate">
+				</form>
+				<!-- <form class="" action="/contracts/<%= c.id %>/edit" method="POST">
+				  <input type="submit" value="Edit Contract" name="edit">
+				</form> -->
+			</li>
+		</ol>
+	<% end %>
+	<br>
+	<% @user.active_borrows.each.with_index(1) do |c, index| %>
+		<ol>
+			<li><%= index %>. You have had <%=c.loaner.username%>'s <%=c.tool.name%> since <%= c.created_at.strftime("%a %b %d %Y")%>
+			</li>
+		</ol>
+	<% end %>
+<br>
+<h3>You've had <%= @user.loan_history.length + @user.borrow_history.length %> past loans:</h3>
+		<% @user.loan_history.each do |loan| %>
+			<ol>
+				<li><%=loan.borrower.username%> returned your <%=loan.tool.name%> on <%= loan.updated_at.strftime("%a %b %d %Y") %></li>
+			</ol>
+		<% end %>
+		<br>
+		<% @user.borrow_history.each do |borrow| %>
+			<ol>
+				<li>You returned <%=loan.loaner.username%>'s <%=loan.tool.name%></li>
+			</ol>
+		<% end %>
+<p><a href="/">Back to My Dashboard</a></p>

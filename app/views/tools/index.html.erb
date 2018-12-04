@@ -1,0 +1,8 @@
+<h2><%= @user.username%>'s Toolbox</h2>
+
+<% @user.tools.each do |t| %>
+	<p><b><%= t.name %>: </b> <%= t.description %></p>
+	<p><a href="/tools/<%= t.id %>/edit">edit tool</a></p>
+	<p>delete tool</p>
+<% end %>
+<p><a href="/users/<%= "#{@user.id}" %>">Back to My Dashboard</a></p>
