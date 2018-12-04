@@ -4,23 +4,30 @@
 <h2><!-- <a href="/users/contracts"> -->My Contracts<!-- </a> --></h2>
 
 	<h3>Active Loans</h3>
-	<!-- make HTML list -->
-		<% if @user.active_loans.empty? %>
-			<p>You are not loaning any tools right now.</p>
-		<% else%>
-			<% @user.active_loans.each.with_index(1) do |c, index| %>
-				<!-- later on... add a date... due date? -->
-				<p><%= "#{index}. You loaned your #{c.tool.name} to #{c.borrower.username}." %></p>
-			<% end %>
-		<% end %>
-
+	
+1. asdfjl
+2. alkjlkj
+3. akjlk
 
 	<h3>Active Borrows</h3>
-	<!-- make HTML list -->
-		<% if @user.borrower_contracts.empty? %>
-			<p>You are not borrowing any tools right now.</p>
-		<% else %>
-			<% @user.borrower_contracts.each.with_index(1) do |c, index| %>
-				<p><%= "#{index}. You are borrowing a #{c.tool.name} from #{c.loaner.username}" %></p>
-			<% end %>
-		<% end %>
+	
+1. lkjlk
+2. lkjlk
+3. lkjlk
+
+<!-- TOOL SECTION, float side by side -->
+<h2><!-- <a href="/users/tools"> -->My Tools<!-- </a> --></h2>
+	<% @user.tools.each.with_index(1) do |t, index| %>
+		<p>
+			<b><%= "#{index}." %><a href="/tools/<%="#{t.id}"%>"><%= "#{t.name}" %></a>:</b> <%= t.description %>
+		</p>
+	<% end %>
+
+<h3>Add some tools to your toolbox so you can loan them out!</h3>
+	<%= form_for @tool do |f| %>
+		<%= f.label :name, "Name: " %>
+		<%= f.text_field :name %> <br>
+		<%= f.label :description, "Description (optional): " %>
+		<%= f.text_field :description %> <br>
+		<%= f.submit "Add to my Toolbox" %>
+	<% end %>

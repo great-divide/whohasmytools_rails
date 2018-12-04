@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 	def show
 		if logged_in?
 			@user = User.find_by(id: params[:id])
+			@tool = Tool.new
 	  else
       redirect_to '/'
     end
