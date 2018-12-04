@@ -1,7 +1,7 @@
 class User < ApplicationRecord
 	has_secure_password
 	has_many :tools
-	accepts_nested_attributes_for :tools
+
 	
 	# "loaner_contract == in the role of loaner
 	has_many :loaner_contracts, foreign_key: :loaner_id, class_name: "Contract"
