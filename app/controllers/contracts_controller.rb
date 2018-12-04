@@ -41,8 +41,7 @@ class ContractsController < ApplicationController
 		if logged_in?
 			@contract = Contract.find_by(id: params[:id])
 			if params[:return]
-				@contract.active = false
-				@contract.save
+				@contract.terminate
 				# add message "@tool.name returned"
 			elsif params[:extend]
 				# change due date, which doesn't exist yet

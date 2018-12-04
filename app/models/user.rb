@@ -65,4 +65,8 @@ class User < ApplicationRecord
 		end
 		array
 	end
+
+	def available_tools
+		self.tools.select { |t| t.active == false}
+	end
 end

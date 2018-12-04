@@ -38,6 +38,6 @@
 		<%= f.label :borrower %>
 		<%= f.text_field :borrower %>
 		<%= f.label :tool, "Tool: " %>
-		<%= f.collection_select :tool, @user.tools, :name, :name %>
+		<%= f.collection_select :tool, @user.available_tools, :name, :name %>
 		<%= f.submit "Loan it out!" %>
 	<% end %>
