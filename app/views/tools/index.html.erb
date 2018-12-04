@@ -2,7 +2,9 @@
 
 <% @user.tools.each do |t| %>
 	<p><b><%= t.name %>: </b> <%= t.description %></p>
-	<p><a href="/tools/<%= t.id %>/edit">edit tool</a></p>
-	<p>delete tool</p>
+	<p>
+		<%= link_to "Edit Tool", edit_tool_path(t)%>
+		<%= link_to "Delete Tool", tool_path(t), :method => :delete %>
+	</p>
 <% end %>
-<p><a href="/users/<%= "#{@user.id}" %>">Back to My Dashboard</a></p>
+<p><%= link_to "Back to My Dashboard", user_path(@user) %></p>

@@ -29,16 +29,16 @@
 		<% end %>
 
 <!-- TOOL SECTION, float side by side -->
-<h2><%= link_to "My Tools", user_tools_path(@user)%></h2>
-	<% @user.tools.each.with_index(1) do |t, index| %>
-		<p>
-			<b><%= "#{index}." %><%= link_to "#{t.name}: ", tool_path(t.id)%></b> <%= t.description %>
-		</p>
-	<% end %>
-
+<h2><%= link_to "My Toolbox", user_tools_path(@user)%></h2>
+	<ol>
+		<% @user.tools.each do |t| %>
+				<p><li><b><%= link_to "#{t.name}:", tool_path(t.id)%></b> <%= " #{t.description}" %></li></p>
+		<% end %>
+	</ol>
+	
 <h3>Add some tools to your toolbox so you can loan them out!</h3>
 	<%= form_for @tool do |f| %>
-		<%= f.label :name, "Name: " %>
+		<%= f.label :name, "Tool name: " %>
 		<%= f.text_field :name %> <br>
 		<%= f.label :description, "Description (optional): " %>
 		<%= f.text_field :description %> <br>
@@ -46,7 +46,7 @@
 	<% end %>
 
 <!-- Loan or Borrow things, float side by side -->
-<h3>Loan a Tool to a Friend</h3>
+<h3>Loan a Tool to Someone!</h3>
 	<%= form_for @contract do |f| %>
 		<%= f.label :borrower %>
 		<%= f.text_field :borrower %>

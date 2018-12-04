@@ -22,23 +22,26 @@
 		</ol>
 	<% end %>
 	<br>
-	<% @user.active_borrows.each.with_index(1) do |c, index| %>
-		<ol>
-			<li><%= index %>. You have had <%=c.loaner.username%>'s <%=c.tool.name%> since <%= c.created_at.strftime("%a %b %d %Y")%>
-			</li>
-		</ol>
-	<% end %>
+	<ol>
+		<% @user.active_borrows.each do |c| %>
+				<li>You have had <%=c.loaner.username%>'s <%=c.tool.name%> since <%= c.created_at.strftime("%a %b %d %Y")%></li>
+		<% end %>
+	</ol>
 <br>
 <h3>You've loaned and/or borrowed <%= @user.loan_history.length + @user.borrow_history.length %> tools!</h3>
-		<% @user.loan_history.each do |loan| %>
-			<ol>
-				<li><%=loan.borrower.username%> returned your <%=loan.tool.name%> on <%= loan.updated_at.strftime("%a %b %d %Y") %></li>
-			</ol>
-		<% end %>
+		<ol>
+			<% @user.loan_history.each do |loan| %>
+					<p><li>
+						<%=loan.borrower.username%> returned your <%=loan.tool.name%> on <%= loan.updated_at.strftime("%a %b %d %Y") %>
+					</p></li>
+			<% end %>
+		</ol>
 		<br>
-		<% @user.borrow_history.each do |borrow| %>
-			<ol>
-				<li>You returned <%=loan.loaner.username%>'s <%=loan.tool.name%></li>
-			</ol>
-		<% end %>
+		<ol>
+			<% @user.borrow_history.each do |borrow| %>
+					<p><li>
+						You returned <%=loan.loaner.username%>'s <%=loan.tool.name%>	
+					</p></li>
+			<% end %>
+		</ol>
 <p><%= link_to "Back to My Dashboard", user_path(@user)%></p>

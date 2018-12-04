@@ -53,6 +53,17 @@ class ToolsController < ApplicationController
     end
   end
 
+  def destroy
+  	# binding.pry
+  	if logged_in?
+	  	@tool = Tool.find_by(id: params[:id])
+	  	@tool.destroy
+	  	redirect_to user_tools_path(current_user)
+	  else
+	  	redirect_to '/'
+	  end
+  end
+
 
 private
 	def tool_params
