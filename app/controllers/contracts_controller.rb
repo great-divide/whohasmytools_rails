@@ -38,7 +38,17 @@ class ContractsController < ApplicationController
 	end
 
 	def update
-		binding.pry
+		if logged_in?
+			@contract = Contract.find_by(id: params[:id])
+			if params[:return]
+				@contract.active = false
+				@contract.save
+				# add message "@tool.name returned"
+			elsif params[:extend]
+				# change due date, which doesn't exist yet
+			end
+			redirect_to user_contracts_path(current_user)
+		end
 	end
 
 
