@@ -5,13 +5,16 @@ class ToolsController < ApplicationController
 	end
 
 	def create
-		@tool = Tool.new(tool_params)
+		if logged_in?
+			@tool = Tool.new(tool_params)
+			@tool.user_id = current_user.id
 
-		if @tool.valid?
-			@tool.save
-
-			redirect_to tool_path(@tool)
+			if @tool.valid?
+				@tool.save
+				redirect_to user_path(current_user.id)
+			end
 		else
+			# add error message
 			redirect_to user_path(current_user.id)
 		end
 	end
@@ -19,6 +22,6 @@ class ToolsController < ApplicationController
 
 private
 	def tool_params
-		params.require(:tool).permit(:name, :description)
+		params.require(:tool).permit(:name, :description, :user_id)
 	end
 end
