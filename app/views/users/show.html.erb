@@ -16,7 +16,7 @@
 3. lkjlk
 
 <!-- TOOL SECTION, float side by side -->
-<h2><!-- <a href="/users/tools"> -->My Tools<!-- </a> --></h2>
+<h2><a href="/users/tools">My Tools</a></h2>
 	<% @user.tools.each.with_index(1) do |t, index| %>
 		<p>
 			<b><%= "#{index}." %><a href="/tools/<%="#{t.id}"%>"><%= "#{t.name}" %></a>:</b> <%= t.description %>

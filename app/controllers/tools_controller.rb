@@ -19,6 +19,14 @@ class ToolsController < ApplicationController
 		end
 	end
 
+	def show
+		if logged_in?
+			@tool = Tool.find_by(id: params[:id])
+		else
+			redirect_to '/'
+		end
+	end
+
 
 private
 	def tool_params
