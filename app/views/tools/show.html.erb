@@ -8,3 +8,5 @@
 		<li>Loaned to <%= c.borrower.username %> on <%= c.created_at.strftime("%a %b %d %Y") %></li>
 	</ol>
 <% end %>
+<p><a href="/tools/<%= "#{@tool.id}/edit" %>">Click here to Edit Tool</a></p>
+<p><a href="/users/<%= "#{@tool.user_id}" %>">Back to My Dashboard</a></p>

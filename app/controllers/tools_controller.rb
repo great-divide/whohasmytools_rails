@@ -27,6 +27,24 @@ class ToolsController < ApplicationController
 		end
 	end
 
+	def edit
+		if logged_in?
+			@tool = Tool.find_by(id: params[:id])
+		else
+			redirect_to '/'
+		end
+	end
+
+	def update
+    @tool = Tool.find_by_id(params[:id])
+    @tool.update(tool_params)
+    if @tool.save
+      redirect_to tool_path(@tool)
+    else
+      render :edit
+    end
+  end
+
 
 private
 	def tool_params

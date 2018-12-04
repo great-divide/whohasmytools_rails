@@ -1,0 +1,9 @@
+<h1>Edit Tool</h1>
+
+<%= form_for @tool do |f| %>
+		<%= f.label :name, "Name: " %>
+		<%= f.text_field :name %> <br>
+		<%= f.label :description, "Description (optional): " %>
+		<%= f.text_field :description %> <br>
+		<%= f.submit "Update Tool" %>
+	<% end %>
