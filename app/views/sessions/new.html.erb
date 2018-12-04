@@ -7,3 +7,13 @@
   <%= f.password_field :password %> <br>
   <%= f.submit "Sign me up!" %>
 <% end %>
+
+
+<%= form_for @user, url: {action: "create", controller: "sessions"} do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %> <br>
+  <%= f.label :password %>
+  <%= f.password_field :password %> <br>
+  <%= f.submit "Log In",  %>
+<% end %>
+
