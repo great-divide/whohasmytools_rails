@@ -5,13 +5,20 @@ class SessionsController < ApplicationController
 	end
 
   def create
-	  @user = User.find_by(username: params[:session][:username])
-
-	  if @user.authenticate(params[:session][:password])
-	    session[:user_id] = @user.id
-	    redirect_to user_path(@user)
+  	# binding.pry
+  	if request.env['omniauth.auth']
+    @user = User.create_with_omniauth(request.env['omniauth.auth'])
+    session[:user_id] = @user.id    
+    redirect_to user_path(@user)
 	  else
-	    redirect_to '/'
+		  @user = User.find_by(username: params[:session][:username])
+
+		  if @user.authenticate(params[:session][:password])
+		    session[:user_id] = @user.id
+		    redirect_to user_path(@user)
+		  else
+		    redirect_to '/'
+	  	end
 	  end
 	end
 
@@ -22,3 +29,4 @@ class SessionsController < ApplicationController
 
 
 end
+

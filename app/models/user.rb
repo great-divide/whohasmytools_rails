@@ -69,4 +69,18 @@ class User < ApplicationRecord
 	def available_tools
 		self.tools.select { |t| t.active == false}
 	end
+
+	def self.create_with_omniauth(auth)
+		binding.pry
+	  user = User.find_or_create_by(uid: auth[:uid], provider:  auth[:provider])
+	  user.email = "#{auth['uid']}@#{auth['provider']}.com"
+	  user.password = auth['uid']
+
+	  if User.exists?(user.id)
+	    user
+	  else
+	    user.save!
+	    user
+  end
+end
 end
