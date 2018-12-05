@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+	validates :username, presence: {message: "You must input a username"}, uniqueness: { case_sensitive: false, message: "That username is taken" }
+	validates :password, presence: {message: "You must use a password"}
+	validates :email, presence: {message: "You must provide a valid email"}
+
+
 	has_secure_password
 	has_many :tools
 	

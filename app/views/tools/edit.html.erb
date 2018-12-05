@@ -9,6 +9,5 @@
 	
 	<% end %>
 
-<%= form_for(@tool, :html => { :method => :delete, :remote => true }) do |f| %>
-	<%= f.submit "Delete Tool" %>
-	<% end %>
+
+<%= button_to "Delete this Tool", tool_path(@tool), :method => :delete, data: { confirm: 'Are you sure?' } %>
