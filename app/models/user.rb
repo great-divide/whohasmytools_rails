@@ -76,7 +76,6 @@ class User < ApplicationRecord
 	end
 
 	def self.create_with_omniauth(auth)
-		binding.pry
 	  user = User.find_or_create_by(uid: auth[:uid], provider:  auth[:provider])
 	  user.email = "#{auth['uid']}@#{auth['provider']}.com"
 	  user.password = auth['uid']
