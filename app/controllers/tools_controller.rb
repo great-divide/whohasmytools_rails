@@ -1,10 +1,17 @@
 class ToolsController < ApplicationController
+		# add before: helper method to redirect if !logged_in?
 
 	def index
-		if logged_in?
-			@user = current_user
+		# if logged_in?
+		# 	@user = User.find_by(id: params[:user_id])
+		# else
+		# 	redirect_to '/'
+		# end
+
+		if params[:user_id]
+			@user = User.find_by(id: params[:user_id])
 		else
-			redirect_to '/'
+			@user = current_user
 		end
 	end
 
