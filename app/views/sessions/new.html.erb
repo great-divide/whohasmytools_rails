@@ -2,7 +2,7 @@
 
 <% if @user.errors.any? %>
   <% @user.errors.each do |att, message| %>
-    <h3><%= message %></h3>
+    <h3 style="color: red"><%= message %></h3>
   <% end %>
 <% end %>
 
@@ -38,7 +38,7 @@
           <%= f.email_field :email %> <br>
 
           <%= f.label :password %>
-          <%= f.password_field :password %> <br>
+          <%= f.password_field :password %> 
           <%= f.label :password_confirmation, "Confirm Password" %>
           <%= f.password_field :password_confirmation %>
 
