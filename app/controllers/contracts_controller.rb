@@ -18,6 +18,7 @@ class ContractsController < ApplicationController
 
 
 	def create
+		binding.pry
 		if logged_in? && User.find_by(username: params["contract"]["borrower"])
 
 			# add error message if and logic if tool not selected (first add blank option to tool select)
@@ -25,8 +26,8 @@ class ContractsController < ApplicationController
 			@contract = Contract.create
 			@contract.loaner = current_user
 			@contract.borrower = User.find_by(username: params["contract"]["borrower"])
-				if params["contract"]["tool"]
-					@contract.tool =Tool.find_by(name: params["contract"]["tool"])
+				if params["contract"]["tool_id"]
+					@contract.tool =Tool.find_by(id: params["contract"]["tool_id"])
 				elsif params["tool_id"]
 					@contract.tool = Tool.find_by(id: params[:tool_id])
 				end
