@@ -1,4 +1,6 @@
-<h1>Welcome to your dashboard, <%= @user.username%>!</h1> <%=  button_to "Logout", logout_path(:id => session[:user_id]), :method => :delete %>
+
+	<h1>Welcome to your dashboard, <%= @user.username%>!</h1> <%=  button_to "Logout", logout_path(:id => session[:user_id]), :method => :delete %>
+
 
 <!-- CONTRACTS SECTION -->
 <h2><%= link_to "My Contracts", user_contracts_path(@user)%></h2>

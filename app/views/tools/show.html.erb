@@ -1,4 +1,4 @@
-<h3><%= @tool.name %></h3>
+<h2><%= @tool.name %></h2>
 <h4>Description</h4>
 <p><%= @tool.description %></p>
 
@@ -16,6 +16,8 @@
 	<% else %>
 		<p>You have not loaned this tool out yet.</p>
 	<% end %>
+<br>
+<br>
 <%= link_to "Click here to Edit or Delete Tool", edit_tool_path(@tool) %>
 <p><%= link_to "Back to My Dashboard", user_path(@user)%></p>
 

@@ -11,14 +11,17 @@ class ContractsController < ApplicationController
 	end
 
 	def new
-		@contract = Contract.new
 		@tool = Tool.find(params[:tool_id])
+		if @tool.active == false
+			@contract = Contract.new
+		else
+			@contract = @tool.contracts.active.first
+		end
 		@user = current_user
 	end
 
 
 	def create
-		binding.pry
 		if logged_in? && User.find_by(username: params["contract"]["borrower"])
 
 			# add error message if and logic if tool not selected (first add blank option to tool select)
