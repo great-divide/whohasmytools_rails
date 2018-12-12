@@ -24,6 +24,8 @@ class User < ApplicationRecord
 				array << c
 			end
 		end
+
+
 		
 		self.borrower_contracts.each do |c|
 			if c.active == true
@@ -34,6 +36,10 @@ class User < ApplicationRecord
 	end
 
 	def active_loans
+
+	# could replace this whole thing with next line?
+	# self.loaner_contracts.active
+
 		array = []
 		self.loaner_contracts.each do |c|
 			if c.active == true

@@ -11,6 +11,9 @@ class ContractsController < ApplicationController
 	end
 
 	def new
+		@contract = Contract.new
+		@tool = Tool.find(params[:tool_id])
+		@user = current_user
 	end
 
 
@@ -22,7 +25,11 @@ class ContractsController < ApplicationController
 			@contract = Contract.create
 			@contract.loaner = current_user
 			@contract.borrower = User.find_by(username: params["contract"]["borrower"])
-			@contract.tool = Tool.find_by(name: params["contract"]["tool"])
+				if params["contract"]["tool"]
+					@contract.tool =Tool.find_by(name: params["contract"]["tool"])
+				elsif params["tool_id"]
+					@contract.tool = Tool.find_by(id: params[:tool_id])
+				end
 			@contract.save
 
 			redirect_to user_contracts_path(current_user)
@@ -50,5 +57,9 @@ class ContractsController < ApplicationController
 		end
 	end
 
+private
+	def contract_params
+		params.require(:contract).permit(:tool_id)
+	end
 
 end
